@@ -11,4 +11,4 @@
 <!-- markdownlint-disable-next-line MD036 -->
 _✨ 协助CTFer的自动解题机器人 ✨_
 <!-- prettier-ignore-end -->
-<a href="https://jq.qq.com/?_wv=1027&k=DzOtbzU4"><img src="https://img.shields.io/pypi/v/nonebot2](https://img.shields.io/badge/QQ%E7%BE%A4-555741990-orange?style=flat-square" alt="QQGroup"></a>
+<a href="https://jq.qq.com/?_wv=1027&k=DzOtbzU4"><img src="https://img.shields.io/badge/QQ%E7%BE%A4-555741990-orange?style=flat-square" alt="QQGroup"></a>
