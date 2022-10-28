@@ -14,9 +14,13 @@ _✨ 协助CTFer的全能辅助机器人 ✨_
 <a href="https://jq.qq.com/?_wv=1027&k=DzOtbzU4"><img src="https://img.shields.io/badge/QQ%E7%BE%A4-555741990-orange?style=flat-square" alt="QQGroup"></a>
   <a href="https://ctf.mzy0.com"><img src="https://img.shields.io/badge/CTF%E5%AF%BC%E8%88%AA%E7%AB%99-ctf.mzy0.com-5492ff?style=flat-square" alt="ctfnav"></a>
 
-
+</div>
 
 ## 实现功能：
   ### 1.盲水印
-![test10](https://user-images.githubusercontent.com/111427585/198652907-7494c9e2-f705-4349-a7ee-c992fe90ad27.gif)
+![盲水印](https://user-images.githubusercontent.com/111427585/198652907-7494c9e2-f705-4349-a7ee-c992fe90ad27.gif)
+  ### 2.base全家桶解码
+![test](https://user-images.githubusercontent.com/111427585/198664898-42f2ce0b-18a0-4bcd-b113-a02a8055067a.png)
+  ### 3. .....
 
+  
