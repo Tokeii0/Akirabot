@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
-  <a href="https://ctf.mzy0.com"><img src="https://ctf.mzy0.com/wp-content/uploads/2022/10/Cat-ear-girl-there-is-a-fish-in-her-mouth-a-bell-on-her-neckshort-blue-hairWith-a-smileHolding-a-fish-s-989731546.png" width="80" height="80" alt="akebot"></a>
+  <a href="https://ctf.mzy0.com"><img src="![test](https://user-images.githubusercontent.com/111427585/198639219-00168cde-ff17-4d1b-9712-29ad223d915f.jpg)
+" width="80" height="80" alt="akebot"></a>
 </p>
 
 <div align="center">
