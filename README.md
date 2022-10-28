@@ -12,3 +12,9 @@
 _✨ 协助CTFer的全能辅助机器人 ✨_
 <!-- prettier-ignore-end -->
 <a href="https://jq.qq.com/?_wv=1027&k=DzOtbzU4"><img src="https://img.shields.io/badge/QQ%E7%BE%A4-555741990-orange?style=flat-square" alt="QQGroup"></a>
+</div>
+
+## 实现功能：
+  ### 1.盲水印
+![test10](https://user-images.githubusercontent.com/111427585/198652907-7494c9e2-f705-4349-a7ee-c992fe90ad27.gif)
+
