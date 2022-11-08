@@ -75,6 +75,8 @@ https://github.com/Tokeii0/Akirabot/blob/main/Function.md
 
 现在来简单写一个base64解码的插件
 
+文件可以放在ctftools下面,保存之后重新运行bot.py会自动装载
+
 ```python
 #导入相关模块
 from nonebot import on_command 
