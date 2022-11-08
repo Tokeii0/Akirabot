@@ -60,6 +60,45 @@ Go-cqhttp：https://github.com/Mrs4s/go-cqhttp
 ├── 📜 pyproject.toml
 └── 📜 README.md
 ```
+
+## 开发
+
+我不是开发出身，不怎么会使用专业性名词，可能会有一些错误的地方，希望大家不要介意
+
+官方插件教程：https://v2.nonebot.dev/docs/tutorial/plugin/introduction
+
+这里只是以我自己的理解来说一下如何开发相关插件
+
+现在来简单写一个base64解码的插件
+
+```python
+#导入相关模块
+from nonebot import on_command 
+from nonebot.adapters.onebot.v11 import Bot,MessageEvent 
+from nonebot.adapters.onebot.v11 import Message
+from nonebot.rule import to_me
+from nonebot.matcher import Matcher
+from nonebot.params import CommandStart,EventType,EventMessage,CommandArg,Arg
+from nonebot.typing import T_State
+
+#on_command 可以理解为以命令启动,起一个参数为触发命令即 #base64de xxxx触发该命令
+#后面的aliases为该命令的别名，priority为优先级
+base64de = on_command('base64de',  aliases={'解码base64', '解密base64'}, priority=5)
+@base64de.handle()
+async def base64de_(matcher: Matcher, args: Message = CommandArg()):
+    #extract_plain_text()这个方法可以取到 除去命令外的所有字符串
+    plain_text = args.extract_plain_text()
+    if plain_text:
+        try:
+            #解码
+            plain_text = base64.b64decode(plain_text).decode('utf-8')
+            #发送消息
+            await matcher.send(plain_text)
+        except Exception as e:
+            #发送报错信息
+            await matcher.send(str(e))
+
+```
   
 
 ## 鸣谢
