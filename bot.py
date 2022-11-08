@@ -20,7 +20,7 @@ app = nonebot.get_asgi()
 driver = nonebot.get_driver()
 driver.register_adapter(OneBotV11Adapter)
 nonebot.load_builtin_plugins("echo")
-nonebot.load_plugins("akirabot/plugins/ctftools")
+nonebot.load_plugins("akirabot/plugins/ctftools", "akirabot/plugins/other")
 #nonebot.load_plugins('nonebot_plugin_gocqhttp')
 
 

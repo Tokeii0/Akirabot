@@ -1,0 +1,8 @@
+Anti-flashpic:
+  status: true
+  whitelist:
+Anti-msg:
+  status: false
+  whitelist:
+picocr:
+  status: true
