@@ -1,0 +1,10 @@
+base45==0.4.4
+base58==2.1.0
+base91==1.0.1
+libnum==1.7.1
+matplotlib==3.3.4
+numpy==1.23.4
+Pillow==9.3.0
+pyzbar==0.1.9
+requests==2.27.1
+zxing==0.12
