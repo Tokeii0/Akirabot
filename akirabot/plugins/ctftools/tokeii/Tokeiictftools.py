@@ -91,7 +91,7 @@ class Tokeiictftools:
         p = subprocess.Popen(commandstr, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         result = p.stdout.read() # type: ignore
         str1 = result.decode('utf-8')
-        return str1.replace('D:/pythonconda/nonebot2','')
+        return str1.replace('D:/pythonconda/nonebot2','') # 保护隐私,自行修改替换
 
 
 
