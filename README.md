@@ -19,6 +19,45 @@ _✨ 协助CTFer的全能辅助机器人 ✨_
 </div>
 
 
+## 安装
+
+可以跟着nonebot2官方教程新建一个项目
+当然也可以直接clone
+
+官方文档：https://v2.nonebot.dev/docs/start/installation
+
+```bash
+  #cmd 或 powershell下命令
+  #安装nonebot2,通过脚手架安装
+  pip install nb-cli 或 python3 -m pip install nb-cli
+  #安装驱动器（安装aiohttp）
+  nb driver install aiohttp 或 pip install aiohttp
+  #安装协议适配器,我们用的是QQ机器人这里安装第一个OneBot V11
+  nb adapter install nonebot-adapter-onebot
+  或
+  pip install nonebot-adapter-onebot
+  #创建项目
+  nb create
+  #起名为akirabot,最后一个
+  #Which adapter(s) would you like to use?
+  #如果前面适配器没有安装这里空格就选择后回车安装，没有就Y跳过
+```
+## 目录结构
+```bash
+
+📦 akirabot
+├── 📂 akirabot         # 插件存放处
+│   └── 📜 plugins
+├── 📜 .env                
+├── 📜 .env.dev            
+├── 📜 .env.prod           
+├── 📜 .gitignore
+├── 📜 bot.py              # 替换掉
+├── 📜 docker-compose.yml
+├── 📜 Dockerfile
+├── 📜 pyproject.toml
+└── 📜 README.md
+```
   
 
   
