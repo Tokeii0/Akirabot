@@ -26,6 +26,8 @@ _✨ 协助CTFer的全能辅助机器人 ✨_
 
 官方文档：https://v2.nonebot.dev/docs/start/installation
 
+Go-cqhttp：https://github.com/Mrs4s/go-cqhttp
+
 ```bash
   #cmd 或 powershell下命令
   #安装nonebot2,通过脚手架安装
