@@ -62,7 +62,7 @@ Go-cqhttp：https://github.com/Mrs4s/go-cqhttp
 ```
   
 
-## 所用到的项目
+## 鸣谢
 
 
 | 项目名称 | 地址                |
