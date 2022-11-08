@@ -61,6 +61,10 @@ Go-cqhttp：https://github.com/Mrs4s/go-cqhttp
 └── 📜 README.md
 ```
 
+## 现有功能展示
+
+https://github.com/Tokeii0/Akirabot/blob/main/Function.md
+
 ## 开发
 
 我不是开发出身，不怎么会使用专业性名词，可能会有一些错误的地方，希望大家不要介意
