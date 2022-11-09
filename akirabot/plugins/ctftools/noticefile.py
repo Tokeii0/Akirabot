@@ -27,3 +27,9 @@ usergetfile = on_command('查看文件',priority=1, block=False)
 async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
     userid = event.user_id
     await usergetfile.finish(tkts.Tokeiictftools().usergetfile(userid))
+
+deluserfile = on_command('删除文件',priority=1, block=False)
+@deluserfile.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    userid = event.user_id
+    await deluserfile.finish(tkts.Tokeiictftools().deluserfile(userid))
