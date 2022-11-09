@@ -124,6 +124,20 @@ class Tokeiictftools:
             for file in files:
                 os.remove(f'{userpath}/{file}')
         return '已清空文件'
+    def dtmf2num(self,wavfile,userid):
+        userpath = f'./userfile/{userid}/'
+        wavfile = f'{userpath}/{wavfile}'
+        wavfile = os.path.abspath(wavfile)
+        currentpath = os.path.abspath('.')
+        dtmf2numcmd = rf'{currentpath}\akirabot\plugins\ctftools\tokeii\dtmf2num.exe {wavfile}'
+        #print(dtmf2numcmd)
+        a=subprocess.Popen(dtmf2numcmd,shell=True,stdout=subprocess.PIPE,universal_newlines=True)
+        a.wait()
+        result = a.stdout.read().split('\n')
+        print(result)
+        for i in result:
+            if 'DTMF numbers' in i:
+                return i
         
 
 
