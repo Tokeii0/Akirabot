@@ -28,7 +28,7 @@ def conversionString(intnumber):
     lennumber = len(strnumber)
     # 如果长度等于1 则直接返回对应的各位数字
     if lennumber == 1:
-        return numberList[intnumber]
+        return numberList[intnumber] 
     # 如果不为一 也就不是个位数 则需要获取相关单位
     string = ''
     for i in range(lennumber):
