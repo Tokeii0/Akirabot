@@ -129,7 +129,7 @@ async def base64de_(matcher: Matcher, args: Message = CommandArg()):
 ```
   
 
-## 鸣谢
+## 使用到的项目
 
 
 | 项目名称 | 地址                |
@@ -138,5 +138,7 @@ async def base64de_(matcher: Matcher, args: Message = CommandArg()):
 | `go-Cqhttp` |  https://github.com/Mrs4s/go-cqhttp |
 | `BlindWaterMark` | https://github.com/chishaxie/BlindWaterMark |
 | `exiftool` |  https://github.com/exiftool/exiftool |
+| `zsteg` |  https://github.com/zed-0xff/zsteg |
+
 
   
