@@ -68,6 +68,25 @@ Go-cqhttp：https://github.com/Mrs4s/go-cqhttp
 
 https://github.com/Tokeii0/Akirabot/blob/main/Function.md
 
+## 使用
+进入项目目录后运行`bot.py`和`go-cqhttp.exe`并配置好QQ号等即可
+
+```bash
+  目前群聊中可使用
+  #trybase xxxxxxx
+
+  目前私聊中可用
+  #zsteg <file>
+  #fixpng <file>
+  #exif <file>
+  #盲水印py3 <file1> <file2>
+  
+  自动触发功能
+  解码二维码
+
+```
+
+
 ## 开发
 
 我不是开发出身，不怎么会使用专业性名词，可能会有一些错误的地方，希望大家不要介意
