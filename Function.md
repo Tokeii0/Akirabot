@@ -9,6 +9,8 @@
 ![fixpng](https://user-images.githubusercontent.com/111427585/198876618-8f241180-895b-4247-8e35-f134d13dcc51.gif)
   ### 5.查看图片/视频exif信息
 ![exif](https://user-images.githubusercontent.com/111427585/198878977-e7ce20fc-2447-48de-a126-9997078552bb.png)
+  ### 6.dtmf2num
+  ![dtmf2num](https://user-images.githubusercontent.com/111427585/200830753-98f3a9c6-8f92-42e0-9aef-19dd2a91c4cf.gif)
 
 
   
