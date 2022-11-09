@@ -91,8 +91,32 @@ class Tokeiictftools:
         p = subprocess.Popen(commandstr, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         result = p.stdout.read() # type: ignore
         str1 = result.decode('utf-8')
-        return str1.replace('D:/pythonconda/nonebot2','') # 保护隐私,自行修改替换
-
+        return str1.replace('D:/pythonconda/nonebot2','')
+    def zsteg_qq(self,imgpath,userid):
+        import subprocess
+        getlinuxpwd = subprocess.Popen('wsl.exe -d kali-linux pwd',shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        #等待执行完成
+        getlinuxpwd.wait()
+        linuxpwd = getlinuxpwd.stdout.read().decode('utf-8').strip()
+        userpath = f'/userfile/{userid}/'
+        imgpath= f'{userpath}{imgpath}'
+        imgpathlinux = linuxpwd+imgpath.replace('D:/pythonconda/nonebot2','')
+        print(imgpathlinux)
+        a=subprocess.Popen(f"wsl.exe -d kali-linux zsteg {imgpathlinux}",shell=True,stdout=subprocess.PIPE,universal_newlines=True)
+        a.wait()
+        result = a.stdout.read().split('\n')
+        textresult = []
+        fileresult = []
+        for i in result:    
+            if 'text' in i:
+                textresult.append(i)
+            if 'file' in i:
+                fileresult.append(i)
+        textresult = '\n'.join(textresult)
+        fileresult = '\n'.join(fileresult)
+        print(textresult,fileresult)
+        return textresult,fileresult
+        
 
 
 class Allbasetry:
