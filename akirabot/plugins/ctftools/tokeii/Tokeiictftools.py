@@ -63,8 +63,9 @@ class Tokeiictftools:
             f.close()
     def usergetfile(self,userid):#查看用户文件列表
         userpath = f'./userfile/{userid}/'
-        if not os.path.exists(userpath):
-            return '您还没有上传过文件'
+        #如果userpath文件夹为空
+        if not os.listdir(userpath):
+            return '当前文件夹为空'
         #换行打印
         for root,dirs,files in os.walk(userpath):
             return '\n'.join(files)
@@ -116,6 +117,13 @@ class Tokeiictftools:
         fileresult = '\n'.join(fileresult)
         print(textresult,fileresult)
         return textresult,fileresult
+    def deluserfile(self,userid):
+        userpath = f'./userfile/{userid}/'
+        #删除userpath目录下所有文件
+        for root,dirs,files in os.walk(userpath):
+            for file in files:
+                os.remove(f'{userpath}/{file}')
+        return '已清空文件'
         
 
 
