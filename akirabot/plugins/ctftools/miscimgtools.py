@@ -43,7 +43,7 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
     if msg:
         try:
             userid = event.user_id
-            await jsteg.send('[+] 正在解码,请稍等...')
+            await jsteg.send('[+] 尝试Jsteg隐写,请稍等...')
             data = tkts.picstegotest().tryjsteg(msg,userid)
             await jsteg.finish(f'[+] Jsteg隐写结果:\n{data}')
         except Exception as e:
