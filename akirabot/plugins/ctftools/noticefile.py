@@ -27,7 +27,10 @@ Png,bmp文件可使用命令
 Jpg文件可使用命令
 [+] #jsteg filename
 盲水印文件可使用命令
-[+] #盲水印 filename1 filename2''')
+[+] #盲水印 filename1 filename2
+其他命令
+[+] #查看文件 #删除文件''')
+
             await noticefile.finish(tkts.Tokeiictftools().downloadfile(filename,url,userid))
         else:
             await noticefile.finish(f'[-] 文件名只允许含有[0-9a-zA-Z.],请重新发送')
