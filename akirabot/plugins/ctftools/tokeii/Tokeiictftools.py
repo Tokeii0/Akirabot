@@ -124,23 +124,6 @@ class Tokeiictftools:
             for file in files:
                 os.remove(f'{userpath}/{file}')
         return '已清空文件'
-    def dtmf2num(self,wavfile,userid):
-        userpath = f'./userfile/{userid}/'
-        wavfile = f'{userpath}/{wavfile}'
-        wavfile = os.path.abspath(wavfile)
-        currentpath = os.path.abspath('.')
-        dtmf2numcmd = rf'{currentpath}\akirabot\plugins\ctftools\tokeii\dtmf2num.exe {wavfile}'
-        #print(dtmf2numcmd)
-        a=subprocess.Popen(dtmf2numcmd,shell=True,stdout=subprocess.PIPE,universal_newlines=True)
-        a.wait()
-        result = a.stdout.read().split('\n')
-        print(result)
-        for i in result:
-            if 'DTMF numbers' in i:
-                return i
-        
-
-
 class Allbasetry:
     def base64decode(self,base64str):
         return base64.b64decode(base64str)
@@ -167,6 +150,25 @@ class Allbasetry:
                     return (i+':',(eval(f'a.{i}("{basestr}")')).decode())
                 except:
                     pass
+
+class picstegotest:
+    def tryjsteg(self,imgpath,userid):
+        import subprocess
+        userpath = f'./userfile/{userid}/'
+        imgpath= f'{userpath}/{imgpath}'
+        imgpath = os.path.abspath(imgpath)
+        #获取当前文件路径
+        currentpath = os.path.abspath('.')
+        commandstr = rf'{currentpath}\akirabot\plugins\ctftools\tokeii\jsteg.exe reveal {imgpath}'
+        print(commandstr)
+        p = subprocess.Popen(commandstr, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        result = p.stdout.read() # type: ignore
+        if 'could not decode jpeg: invalid JPEG format: missing SOI marker' in result.decode('utf-8'):
+            return '不存在jsteg隐藏信息'
+        else:
+            str1 = result.decode('utf-8')
+            return str1
+
 
 def fixpng(filepath):#修复png脚本
     fr = open(filepath,'rb').read()
