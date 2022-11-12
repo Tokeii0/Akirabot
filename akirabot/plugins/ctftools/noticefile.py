@@ -16,7 +16,18 @@ async def _(bot: Bot,event: NoticeEvent,state: T_State):
         filename,url,userid = event.file['name'],event.file['url'],event.user_id
         if re.match(r'^[0-9a-zA-Z.]+$',filename):
             print(filename,url,userid)
-            await noticefile.send(f'[+] 文件接收成功如要使用请记录好文件名\n[+] 文件名为:{filename}\n[+] 文件大小为{event.file["size"]}')
+            await noticefile.send(f'[+] 文件接收成功\n如要使用请记录好文件名\n[+] 文件名为:{filename}\n[+] 文件大小为{event.file["size"]}')
+            await noticefile.send('''[+] 请使用以下命令进行文件操作
+Png,jpg,bmp等文件可使用命令：
+[+] #exif filename
+Wav,mp3文件可使用命令
+[+] #dtmf2num filename (#按键音 filename)
+Png,bmp文件可使用命令
+[+] #zsteg filename
+Jpg文件可使用命令
+[+] #jsteg filename
+盲水印文件可使用命令
+[+] #盲水印 filename1 filename2''')
             await noticefile.finish(tkts.Tokeiictftools().downloadfile(filename,url,userid))
         else:
             await noticefile.finish(f'[-] 文件名只允许含有[0-9a-zA-Z.],请重新发送')
