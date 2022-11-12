@@ -33,3 +33,19 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
             await getexif.finish(f'[+] exif信息:\n{exif}')
         except Exception as e:
             pass
+
+
+        
+jsteg = on_command('jsteg',aliases={'jsteg'},priority=1, block=False)
+@jsteg.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    msg = args.extract_plain_text()
+    if msg:
+        try:
+            userid = event.user_id
+            await jsteg.send('[+] 正在解码,请稍等...')
+            data = tkts.picstegotest().tryjsteg(msg,userid)
+            await jsteg.finish(f'[+] Jsteg隐写结果:\n{data}')
+        except Exception as e:
+            print(e)
+            #await jsteg.finish(f'[-] 解码失败,错误信息:{e}')
