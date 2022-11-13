@@ -18,6 +18,8 @@ _✨ 协助CTFer的全能辅助机器人 ✨_
 
 </div>
 
+##简单演示
+![ptbtest2](https://user-images.githubusercontent.com/111427585/201509933-1321cec6-6407-489c-bedf-8dabb19bc320.gif)
 
 ## 安装
 
