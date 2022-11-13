@@ -67,18 +67,21 @@ async def get_picocr(bot: Bot,event: MessageEvent,msg: Message = Arg("picocr")):
         if msg[0].type == "image":
             imageid = str(msg[0]).split(',')[1].split('=')[1]
             ocrres = await bot.call_api('ocr_image', image=imageid)
-            print(ocrres)
+            #print(ocrres)
             result = ''
+            if len(ocrres['texts'])>5:
+                await picocr.finish(f'[-] 过长,请分段识别')
             for i in range(len(ocrres['texts'])):
                 confidence=str(ocrres['texts'][i]['confidence'])
                 text = str(ocrres['texts'][i]['text'])
                 result +=  text+'('+confidence+'%)\n'
-                if 'flag' in result :
-                    if '[' in result or ']' in result:
-                        resultnew = result.replace('[','{').replace(']','}')
-                        await picocr.send(Message('[+] 图片识别内容为:\n'+result+'[+] 智能修改后为:\n'+resultnew.replace(confidence+'%','更正后')))
-                else:
-                    await picocr.send(Message('[+] 图片识别内容为:\n'+result))    
+            if 'flag' in result :
+                if '[' in result or ']' in result or  '(' in result or ')' in result:
+                    resultnew = result.replace('[','{').replace(']','}')
+                    resultnew = resultnew.replace('(','{').replace(')','}')
+                    await picocr.send(Message('[+] 图片识别内容为:\n'+result+'[+] 智能修改后为:\n'+resultnew.replace(confidence+'%','更正后')))
+            else:
+                await picocr.send(Message('[+] 图片识别内容为:\n'+result))    
                     
             
             #('图片识别内容为'+ocrres['texts'][0]['text'],'准确率为'+str(ocrres['texts'][0]['confidence'])+'%')
