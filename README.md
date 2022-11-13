@@ -15,11 +15,10 @@ _✨ 协助CTFer的全能辅助机器人 ✨_
   <a href="https://ctf.mzy0.com"><img src="https://img.shields.io/badge/CTF%E5%AF%BC%E8%88%AA%E7%AB%99-ctf.mzy0.com-5492ff?style=flat-square" alt="ctfnav"></a>
   <a href="https://afdian.net/@Tokeii"><img src="https://img.shields.io/badge/爱发电-afdian.net-66ccff?style=flat-square" alt="aifadian"></a>
   <a href=".."><img src="https://img.shields.io/badge/python-3.8+-def1f2?style=flat-square" alt="python"></a>
-
+  <a href="https://ctf.mzy0.com"><img src="https://user-images.githubusercontent.com/111427585/201509933-1321cec6-6407-489c-bedf-8dabb19bc320.gif"  alt="test"></a>
 </div>
 
-##简单演示
-![ptbtest2](https://user-images.githubusercontent.com/111427585/201509933-1321cec6-6407-489c-bedf-8dabb19bc320.gif)
+
 
 ## 安装
 
