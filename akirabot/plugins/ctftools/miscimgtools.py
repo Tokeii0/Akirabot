@@ -89,3 +89,30 @@ async def get_picocr(bot: Bot,event: MessageEvent,msg: Message = Arg("picocr")):
     except Exception as e:
         print(e)
         return
+
+#draw01str
+draw01 = on_command('draw01',aliases={'01画图'}, priority=5)
+@draw01.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    import math
+    msg = args.extract_plain_text()
+    userid = event.user_id
+    if len(msg.split(' '))==4:
+        str01num = msg.split(' ')[0]
+        str01a = int(msg.split(' ')[1])
+        str01b = int(msg.split(' ')[2])
+        str01x = msg.split(' ')[3]
+        print(str01num,str01a,str01b,str01x)
+        picpath = tkts.Tokeiictftools().draw01(str01num,str01a,str01b,str01x,userid)
+        await draw01.finish(Message(f'[CQ:image,file=file:///{picpath}]'))
+    else:
+        userpath = f'./userfile/{userid}/'
+        if 'txt' in msg:
+            str01num = open(f'{userpath}{msg}','r').read()
+        else :
+            str01num = msg
+        strlen = len(str01num)
+        if int(strlen**0.5)-strlen**0.5==0:
+            await draw01.finish('[+] 推荐a,b值为：'+str(int(math.sqrt(strlen)))+"\n[+] 请在后面继续添加参数a b x (x可选值为01,用于颜色取反)")
+        else:
+            await draw01.finish('[+] 请在后面继续添加参数a b x (x可选值为01,用于颜色取反)"')
