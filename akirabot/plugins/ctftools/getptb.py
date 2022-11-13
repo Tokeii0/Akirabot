@@ -80,6 +80,22 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
             pass
             #await ptbgetquestion.finish(f'[-] 获取题目失败,错误信息:{e}')
 
+# 提交flag
+submitflag = on_command('提交flag',priority=1, block=False)
+@submitflag.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    msg = args.extract_plain_text()
+    userid = event.user_id
+    if '成功' in ptb.login(userid) :
+        await submitflag.send('[+] 正在提交flag,请稍等...')
+        try:
+            result = ptb.submit(userid,msg)
+            if result == True:
+                await submitflag.finish(f'[+] Flag正确,提交成功')
+            elif result == False:
+                await submitflag.finish(f'[-] Flag错误,请检查flag是否正确')
+        except Exception as e:
+            pass
 
 async def ptblogin(ptbusername,ptbpasswd,userid):
     ptb.save_user(ptbusername,ptbpasswd,userid)
