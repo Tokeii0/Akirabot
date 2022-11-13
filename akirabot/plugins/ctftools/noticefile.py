@@ -27,10 +27,7 @@ Png,bmp文件可使用命令
 Jpg文件可使用命令
 [+] #jsteg filename
 盲水印文件可使用命令
-[+] #盲水印 filename1 filename2
-其他命令
-[+] #查看文件 #删除文件''')
-
+[+] #盲水印 filename1 filename2''')
             await noticefile.finish(tkts.Tokeiictftools().downloadfile(filename,url,userid))
         else:
             await noticefile.finish(f'[-] 文件名只允许含有[0-9a-zA-Z.],请重新发送')
@@ -47,3 +44,21 @@ deluserfile = on_command('删除文件',priority=1, block=False)
 async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
     userid = event.user_id
     await deluserfile.finish(tkts.Tokeiictftools().deluserfile(userid))
+unzipfile = on_command('解压文件',priority=1, block=False)
+@unzipfile.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    import os
+    userid = event.user_id
+    if args:
+        filename = args.extract_plain_text()
+        result = tkts.Tokeiictftools().unzipfile(filename,userid)
+        if '失败' in result:
+            await unzipfile.finish(result)
+        else:
+            filename = result.split("\\")[-1]
+            await unzipfile.send('[+] 解压成功,文件名为:'+result.split("\\")[-1])
+            try:
+                await unzipfile.send(Message(f'[CQ:image,file=file:///{result}]'))
+            except:
+                await unzipfile.finish(f'[+] 如果图片无法正常浏览请尝试使用 #fixpng {filename}修复图片')
+            
