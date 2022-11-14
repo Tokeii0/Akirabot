@@ -11,7 +11,7 @@ from io import BytesIO
 import numpy,time
 import asyncio,subprocess
 import base64,base58,base45,libnum,hashlib
-import base91
+import base91,zipfile
 
 
 
@@ -124,6 +124,56 @@ class Tokeiictftools:
             for file in files:
                 os.remove(f'{userpath}/{file}')
         return '已清空文件'
+    def unzipfile(self,filename,userid):
+        userpath = f'./userfile/{userid}/'
+        filename = f'{userpath}/{filename}'
+        filename = os.path.abspath(filename)
+        #print(filename)
+        try:
+            #utf-8
+            unzipfilename = zipfile.ZipFile(filename,'r')
+            with zipfile.ZipFile(filename,'r') as zip_file:
+                zip_file.extractall(userpath)
+            #文件完整路径
+            unzipfilename = os.path.abspath(f'{userpath}{unzipfilename.namelist()[0]}')
+            print(unzipfilename)
+            return unzipfilename
+        except:
+            return '[-] 解压失败'
+    def draw01(self,str1,a,b,x,userid):
+        n=0
+        userpath = f'./userfile/{userid}/'
+        if 'txt' in str1:
+            str1 = open(f'{userpath}{str1}','r').read()
+            
+        else:
+            pass
+        pic = Image.new("RGB",(a, b))
+        for i in range(a):
+            for j in range(b):
+                if str1[n]==x:
+                    pic.putpixel((i,j),(255,255,255))
+                else:
+                    pic.putpixel((i,j),(0,0,0))
+                n+=1
+        #保存到用户目录
+        userpath = f'./userfile/{userid}/'
+        pic.save(f'{userpath}tempdraw01.png')
+        imgpath = os.path.abspath(f'{userpath}tempdraw01.png')
+        return imgpath
+    def filetype(self,filepath,userid):
+        userpath = f'./userfile/{userid}/'
+        filepath = f'{userpath}{filepath}'
+        filepath = os.path.abspath(filepath)
+        p = subprocess.Popen(f'file {filepath}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        p.wait()
+        result = p.stdout.read().decode('utf-8')
+        return result.split(';')[1].strip()
+
+
+
+
+
 class Allbasetry:
     def base64decode(self,base64str):
         return base64.b64decode(base64str)
