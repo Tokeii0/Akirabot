@@ -27,7 +27,12 @@ Png,bmp文件可使用命令
 Jpg文件可使用命令
 [+] #jsteg filename
 盲水印文件可使用命令
-[+] #盲水印 filename1 filename2''')
+[+] #盲水印 filename1 filename2
+文件操作命令
+[+] #查看文件 查看当前账号的所有文件
+[+] #删除文件 删除文件夹内所有文件
+[+] #解压文件 filename 解压文件到当前文件夹
+[+] #文件类型 filename 查看文件的文件类型''')
             await noticefile.finish(tkts.Tokeiictftools().downloadfile(filename,url,userid))
         else:
             await noticefile.finish(f'[-] 文件名只允许含有[0-9a-zA-Z.],请重新发送')
@@ -62,3 +67,10 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
             except:
                 await unzipfile.finish(f'[+] 如果图片无法正常浏览请尝试使用 #fixpng {filename}修复图片')
             
+filetypeqq = on_command('文件类型',priority=1, block=False)
+@filetypeqq.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    userid = event.user_id
+    if args:
+        filename = args.extract_plain_text()
+        await filetypeqq.finish(tkts.Tokeiictftools().filetype(filename,userid))
