@@ -90,6 +90,26 @@ async def get_picocr(bot: Bot,event: MessageEvent,msg: Message = Arg("picocr")):
         print(e)
         return
 
+#Cloacked-pixel
+cloackedpixel = on_command('cloackedpixel',aliases={'加密lsb'},priority=1, block=False)
+@cloackedpixel.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    msg = args.extract_plain_text()
+    if msg:
+        filepath = msg.split(' ')[0]
+        try:
+            passwd = msg.split(' ')[1]
+        except:
+            await cloackedpixel.send('[*] 未输入密码，将自动填充 123456')
+            passwd = 123456
+        try:
+            userid = event.user_id
+            await cloackedpixel.send('[+] 尝试检测Cloacked-pixel隐写,请稍等...')
+            data = tkts.Tokeiictftools().cryptolsb(filepath,passwd,userid)
+            await cloackedpixel.finish(f'{data}')
+        except Exception as e:
+            print(e)
+            #await cloackedpixel.finish(f'[-] 解码失败,错误信息:{e}')
 #draw01str
 draw01 = on_command('draw01',aliases={'01画图'}, priority=5)
 @draw01.handle()
