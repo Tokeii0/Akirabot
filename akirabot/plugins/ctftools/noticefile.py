@@ -38,7 +38,7 @@ Jpg文件可使用命令
             await noticefile.finish(f'[-] 文件名只允许含有[0-9a-zA-Z.],请重新发送')
 
 
-usergetfile = on_command('查看文件',priority=1, block=False)
+usergetfile = on_command('查看文件',aliases={'文件列表'},priority=1, block=False)
 @usergetfile.handle()
 async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
     userid = event.user_id
@@ -74,3 +74,42 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
     if args:
         filename = args.extract_plain_text()
         await filetypeqq.finish(tkts.Tokeiictftools().filetype(filename,userid))
+sendfileqq = on_command('发送文件',priority=1, block=False)
+@sendfileqq.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    userid = event.user_id
+    if args:
+        filename = args.extract_plain_text()
+        filepath = tkts.Tokeiictftools().sendfile(filename,userid)
+        await bot.call_api("upload_private_file",user_id=event.user_id,file=filepath,name=filename)
+
+renamefileqq = on_command('重命名文件',priority=1, block=False)
+@renamefileqq.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    import re
+    userid = event.user_id
+    filewhitetype=['txt','jpg','zip','bmp','png']
+    if args:
+        msg = args.extract_plain_text()
+        orgfilename = msg.split(' ')[0]
+        newfilename = msg.split(' ')[1]
+        #仅可修改为filewhitetype中的文件类型
+        if re.match(r'^[0-9a-zA-Z.]+$',newfilename) and newfilename.split('.')[-1] in filewhitetype:
+            await renamefileqq.finish(tkts.Tokeiictftools().renamefile(orgfilename,newfilename,userid))
+        else:
+            await renamefileqq.finish('[-] 文件名只允许含有[0-9a-zA-Z.],且文件类型非法,请重新发送')
+readfileqq = on_command('读取文件',priority=1, block=False)
+@readfileqq.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    userid = event.user_id
+    if args:
+        filename = args.extract_plain_text()
+        if filename.split('.')[-1] == 'txt':
+            filedata = tkts.Tokeiictftools().readfile(filename,userid)
+            await readfileqq.finish(f'[+] 文件内容为:\n{filedata}')
+        else:
+            await readfileqq.finish(f'[-] 仅可读取txt文件')
+
+
+
+
