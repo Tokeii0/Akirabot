@@ -168,10 +168,49 @@ class Tokeiictftools:
         p = subprocess.Popen(f'file {filepath}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         p.wait()
         result = p.stdout.read().decode('utf-8')
-        return result.split(';')[1].strip()
-
-
-
+        return result.split(';')[1]
+    def cryptolsb(self,filepath,passwd,userid):
+        userpath = f'./userfile/{userid}/'
+        filepath = f'{userpath}{filepath}'
+        filepath = os.path.abspath(filepath)
+        outfilepath = os.path.abspath(f'{userpath}tempcryptolsb.data')
+        p = subprocess.Popen(f'python2 ./akirabot/plugins/ctftools/tokeii/cloacked-pixel/lsb.py extract {filepath} {outfilepath} {passwd}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        p.wait()
+        result = p.stdout.read().decode('utf-8')
+        print(result)
+        if 'IndexError' in result :
+            return '[-] 不存在Cloacked-pixel'
+        else:
+            filetypestr = self.filetype('tempcryptolsb.data',userid)
+            print(filetypestr)
+            if 'empty' in filetypestr:
+                return f'[?] 检测到 Cloacked-pixel 隐写,但可能密码错误,可以使用\n#文件类型 tempcryptolsb.data\n查看文件具体类型'
+            else:
+                return f'[+] 检测到 Cloacked-pixel,密码可能正确 \n[+] 隐藏的文件类型为：{filetypestr}'
+    def sendfile(self,filepath,userid):
+        userpath = f'./userfile/{userid}/'
+        filepath = f'{userpath}{filepath}'
+        filepath = os.path.abspath(filepath)
+        return filepath        
+    def renamefile(self,filepath,newname,userid):
+        userpath = f'./userfile/{userid}/'
+        filepath = f'{userpath}{filepath}'
+        filepath = os.path.abspath(filepath)
+        newname = f'{userpath}{newname}'
+        newname = os.path.abspath(newname)
+        os.rename(filepath,newname)
+        newname = newname.split('\\')[-1]
+        return f'重命名成功,新文件名为：\n{newname}'
+    def readfile(self,filepath,userid):
+        userpath = f'./userfile/{userid}/'
+        filepath = f'{userpath}{filepath}'
+        filepath = os.path.abspath(filepath)
+        try:
+            result = open(filepath,'r').read()
+            if len(result)<200:
+                return result
+        except:
+            return '[-] 读取失败'
 
 
 class Allbasetry:
