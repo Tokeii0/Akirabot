@@ -8,4 +8,4 @@ Pillow==9.3.0
 pyzbar==0.1.9
 requests==2.27.1
 zxing==0.12
-opencv-python
+opencv-python==4.5.5.64
