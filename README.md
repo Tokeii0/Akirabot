@@ -22,7 +22,10 @@ _✨ 协助CTFer的全能辅助机器人 ✨_
 
 ## 安装
 
+目前只支持Windows系统,linux系统以后再说吧
+
 可以跟着nonebot2官方教程新建一个项目
+
 当然也可以直接clone
 
 官方文档：https://v2.nonebot.dev/docs/start/installation
