@@ -16,24 +16,20 @@ async def _(bot: Bot,event: NoticeEvent,state: T_State):
         filename,url,userid = event.file['name'],event.file['url'],event.user_id
         if re.match(r'^[0-9a-zA-Z.]+$',filename):
             print(filename,url,userid)
-            await noticefile.send(f'[+] 文件接收成功\n如要使用请记录好文件名\n[+] 文件名为:{filename}\n[+] 文件大小为{event.file["size"]}')
-            await noticefile.send('''[+] 请使用以下命令进行文件操作
-Png,jpg,bmp等文件可使用命令：
-[+] #exif filename
-Wav,mp3文件可使用命令
-[+] #dtmf2num filename (#按键音 filename)
-Png,bmp文件可使用命令
-[+] #zsteg filename
-Jpg文件可使用命令
-[+] #jsteg filename
-盲水印文件可使用命令
-[+] #盲水印 filename1 filename2
-文件操作命令
-[+] #查看文件 查看当前账号的所有文件
-[+] #删除文件 删除文件夹内所有文件
-[+] #解压文件 filename 解压文件到当前文件夹
-[+] #文件类型 filename 查看文件的文件类型''')
-            await noticefile.finish(tkts.Tokeiictftools().downloadfile(filename,url,userid))
+            #下载文件
+            
+            if await downloadfileqq(filename,url,userid)==True:
+                
+                await noticefile.send(f'[+] 文件接收成功\n如要使用请记录好文件名\n[+] 文件名为:{filename}\n[+] 文件大小为{event.file["size"] / 1024 / 1024:.2f}MB\n[+] 文件类型为{tkts.Tokeiictftools().filetype(filename,userid)}')
+                filetypestr = tkts.Tokeiictftools().filetype(filename,userid)
+            else:
+                await noticefile.finish(f'[-] 文件接收失败')
+            if 'PNG' in filetypestr:
+                await noticefile.send(f'[+] 检测到图片类型为PNG,可使用命令\n#zsteg {filename}\n#加密lsb {filename}\n#exif {filename}\n#fixpng {filename}')
+            elif 'WAVE audio' in filetypestr:
+                await noticefile.send(f'[+] 检测到文件类型为WAVE audio,可使用命令\n#steghide {filename}\n#按键音 {filename}')
+            elif 'JPEG' in filetypestr:
+                await noticefile.send(f'[+] 检测到图片类型为JPEG,可使用命令\n#steghide {filename}\n#exif {filename}\n#jsteg {filename}')
         else:
             await noticefile.finish(f'[-] 文件名只允许含有[0-9a-zA-Z.],请重新发送')
 
@@ -73,7 +69,7 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
     userid = event.user_id
     if args:
         filename = args.extract_plain_text()
-        await filetypeqq.finish(tkts.Tokeiictftools().filetype(filename,userid))
+        await filetypeqq.finish(f'[+] 文件类型为:\n{tkts.Tokeiictftools().filetype(filename,userid)}')
 sendfileqq = on_command('发送文件',priority=1, block=False)
 @sendfileqq.handle()
 async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
@@ -113,3 +109,37 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async def downloadfileqq(filename,url,userid):
+    try:
+        tkts.Tokeiictftools().downloadfile(filename,url,userid)
+        return True
+    except:
+        pass
+    
