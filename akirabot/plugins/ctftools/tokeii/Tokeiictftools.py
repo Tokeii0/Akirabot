@@ -12,6 +12,7 @@ import numpy,time
 import asyncio,subprocess
 import base64,base58,base45,libnum,hashlib
 import base91,zipfile
+import sys
 
 
 
@@ -225,6 +226,42 @@ class Tokeiictftools:
         for i in result:
             if 'DTMF numbers' in i:
                 return i
+    def local_decode_qr_cv2(self,imgpath,userid):#解码二维码
+        userpath = f'./userfile/{userid}/'
+        image = cv2.imread(imgpath)
+        barcode = pyzbar.decode(image)
+        reader1 = zxing.BarCodeReader()
+        barcode1 = reader1.decode(imgpath)
+        try:
+            os.remove(imgpath)
+        except Exception as e:
+            pass
+        if barcode1.format!=None:
+            return f'[+] 检测到{barcode1.format}码,已自动帮您解码\n[+] {barcode1.raw}\ndecode by zxing'
+        if barcode:
+            os.remove(imgpath)
+            qrtype =barcode[0].type
+            return f'[+] 检测到{qrtype}码,已自动帮您解码\n[+] {barcode[0].data.decode()}\ndecode by pyzbar'
+    def basecrack_qqbot(self,filename,userid):
+        import sys
+        sys.path.append(r'akirabot\plugins\ctftools\tokeii\basecrack-4.0')
+        from basecrack import BaseCrack # type: ignore
+        if 'ASCII text'in self.filetype(filename,userid) :
+            userpath = f'./userfile/{userid}/'
+            filename = f'{userpath}/{filename}'
+            print(filename)
+            filestr = open(filename, "r").read()
+            # calling the api function decode() with the encoded base
+        else:
+            filestr = filename
+        result = BaseCrack().magic_mode(filestr)
+        return result
+
+        
+
+
+        
+
 
 class Allbasetry:
     def base64decode(self,base64str):
