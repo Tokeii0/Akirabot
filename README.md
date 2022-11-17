@@ -142,5 +142,7 @@ async def base64de_(matcher: Matcher, args: Message = CommandArg()):
 | `exiftool` |  https://github.com/exiftool/exiftool |
 | `zsteg` |  https://github.com/zed-0xff/zsteg |
 |` file for windows`| https://gnuwin32.sourceforge.net/packages/file.htm|
+|` basecrack`| https://github.com/mufeedvh/basecrack|
+|` cloacked-pixel`| https://github.com/livz/cloacked-pixel|
 
   
