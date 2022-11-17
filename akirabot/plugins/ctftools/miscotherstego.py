@@ -22,3 +22,22 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
         except Exception as e:
             pass
             #await dtmf2num.finish(f'[-] 转换失败,错误信息:{e}')
+
+basecrackqq = on_command('basecrack',aliases={'base全家桶,base'},priority=1, block=False)
+@basecrackqq.handle()
+async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
+    msg = args.extract_plain_text()
+    if msg:
+        try:
+            userid = event.user_id
+            await basecrackqq.send('[+] 请稍后...')
+            result = await basecrackasync(msg,userid)
+            await basecrackqq.finish(f'[+] 转换结果:\n{result[0]}\n[+] 编码过程:\n{result[1]}')
+        except Exception as e:
+            pass
+            #await basecrackqq.finish(f'[-] 破解失败,错误信息:{e}')
+
+
+async def basecrackasync(msg,userid):
+    result = tkts.Tokeiictftools().basecrack_qqbot(msg,userid)
+    return result
