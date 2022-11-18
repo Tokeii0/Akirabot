@@ -32,7 +32,10 @@ async def _(bot: Bot,event: MessageEvent,args: Message=CommandArg()):
             userid = event.user_id
             await basecrackqq.send('[+] 请稍后...')
             result = await basecrackasync(msg,userid)
-            await basecrackqq.finish(f'[+] 转换结果:\n{result[0]}\n[+] 编码过程:\n{result[1]}')
+            if result != None:
+                await basecrackqq.finish(f'[+] 转换结果:\n{result[0]}\n[+] 编码过程:\n{result[1]}')
+            else:
+                await basecrackqq.finish(f'[-] 无法解码')
         except Exception as e:
             pass
             #await basecrackqq.finish(f'[-] 破解失败,错误信息:{e}')
