@@ -170,7 +170,8 @@ class BaseCrack:
             # )
             return decoded_string, pattern
         else:
-            quit(colored('\n[!] Not a valid encoding.\n', 'red'))
+            return None,None
+            #quit(colored('\n[!] Not a valid encoding.\n', 'red'))
 
 
     def decode_from_image(self, image, mode):
